@@ -26,6 +26,7 @@ class WordFinder:
             Appends each line to a list of words.
             Returns the list.
         """
+        print('WordFinder.read_word_file', self.file_path)
         file = open(self.file_path, "r")
 
         word_list = []
@@ -45,5 +46,17 @@ class WordFinder:
         """Returns a random word from the WordFinder list"""
         return choice(self.list_of_words)
 
-class RandomWordFinder(WordFinder):
+class SpecialWordFinder(WordFinder):
+    """Special Word Finder: ignores blank lines and lines that start with # when creating list of words"""
+    def __repr__(self):
+        return f"<SpecialWordFinder file_path={self.file_path} list_of_words={self.list_of_words} num_of_words={self.num_of_words}"
+
+    def read_word_file(self):
+        """ Uses parent method to get list of words
+            Filters out items that start with # and that are empty"""
+        word_list = super().read_word_file()
+
+        updated_list = [line for line in word_list if not line.startswith("#") and len(line) > 0]
+        return updated_list
+
 
