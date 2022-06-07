@@ -1,3 +1,5 @@
+from random import choice
+
 class WordFinder:
     """Word Finder: finds random words from a dictionary."""
     # take a file path
@@ -29,7 +31,7 @@ class WordFinder:
         word_list = []
 
         for line in file:
-            word_list.append(line)
+            word_list.append(line[:-1])
         
         file.close()
 
@@ -38,3 +40,10 @@ class WordFinder:
     def print_word_count(self):
         """ Prints number of words read. """
         print (f"{self.num_of_words} words read.")
+
+    def random(self):
+        """Returns a random word from the WordFinder list"""
+        return choice(self.list_of_words)
+
+class RandomWordFinder(WordFinder):
+
