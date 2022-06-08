@@ -14,30 +14,27 @@ class WordFinder:
 
             TODO: Open file directly in __init__, then call function, then close file
         """
-        self.file_path = file_path
+
+        self.file = open(file_path, "r")
         self.list_of_words = self.read_word_file()
+        self.file.close()
         self.num_of_words = len(self.list_of_words)
         self.print_word_count()
 
     def __repr__(self):
-        return f"<WordFinder file_path={self.file_path} list_of_words={self.list_of_words} num_of_words={self.num_of_words}"
+        return f"<WordFinder file={self.file} list_of_words={self.list_of_words} num_of_words={self.num_of_words}"
 
     def read_word_file(self):
-        """ Opens a file.
-            Reads file line-by-line.
+        """ Reads file line-by-line.
             Appends each line to a list of words.
             Returns the list.
             TODO: Use method strip to remove white space from line
         """
-        print('WordFinder.read_word_file', self.file_path)
-        file = open(self.file_path, "r")
 
         word_list = []
 
-        for line in file:
-            word_list.append(line[:-1])
-        
-        file.close()
+        for line in self.file:
+            word_list.append(line.strip())
 
         return word_list
 
