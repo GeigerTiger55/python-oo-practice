@@ -11,6 +11,8 @@ class WordFinder:
         """ Takes a file path.
             Calls function to create list attribute containing words in file.
             Calls function to print word count. 
+
+            TODO: Open file directly in __init__, then call function, then close file
         """
         self.file_path = file_path
         self.list_of_words = self.read_word_file()
@@ -25,6 +27,7 @@ class WordFinder:
             Reads file line-by-line.
             Appends each line to a list of words.
             Returns the list.
+            TODO: Use method strip to remove white space from line
         """
         print('WordFinder.read_word_file', self.file_path)
         file = open(self.file_path, "r")
@@ -46,8 +49,10 @@ class WordFinder:
         """Returns a random word from the WordFinder list"""
         return choice(self.list_of_words)
 
+
 class SpecialWordFinder(WordFinder):
     """Special Word Finder: ignores blank lines and lines that start with # when creating list of words"""
+
     def __repr__(self):
         return f"<SpecialWordFinder file_path={self.file_path} list_of_words={self.list_of_words} num_of_words={self.num_of_words}"
 
